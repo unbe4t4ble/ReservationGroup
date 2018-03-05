@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +36,6 @@ import com.bumptech.glide.request.target.Target;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.content.FileBody;
@@ -51,6 +51,7 @@ import kidzania.reservationgroup.Misc.AndroidMultiPartEntity;
 
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 import static kidzania.reservationgroup.Misc.FuncGlobal.CheckConnection;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.isDeviceSupportCamera;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_NUM_ESC;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_PATH_IMAGE_GROUP;
@@ -113,6 +114,7 @@ public class Photo extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        getInformationUser();
         loadImage();
     }
 
@@ -207,7 +209,7 @@ public class Photo extends AppCompatActivity {
 
         @SuppressWarnings("deprecation")
         private String uploadFile() {
-            String responseString = null;
+            String responseString;
 
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httppost = new HttpPost(URL_UPLOAD_IMAGE_GROUP);
@@ -244,8 +246,6 @@ public class Photo extends AppCompatActivity {
                             + statusCode;
                 }
 
-            } catch (ClientProtocolException e) {
-                responseString = e.toString();
             } catch (IOException e) {
                 responseString = e.toString();
             }
@@ -359,7 +359,7 @@ public class Photo extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        FileOutputStream out = null;
+        FileOutputStream out;
         String filename = getFilename();
         try {
             out = new FileOutputStream(filename);
@@ -398,8 +398,7 @@ public class Photo extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String uriSting = (file.getAbsolutePath() + "/" + ID_NUM_ESC + ".jpg");
-        return uriSting;
+        return (file.getAbsolutePath() + "/" + ID_NUM_ESC + ".jpg");
     }
 
     private String getRealPathFromURI(String contentURI) {
@@ -448,11 +447,7 @@ public class Photo extends AppCompatActivity {
 
     public boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(Photo.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     public void requestPermission() {
@@ -464,7 +459,7 @@ public class Photo extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

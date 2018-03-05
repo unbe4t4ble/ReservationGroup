@@ -25,6 +25,7 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.OpenLostConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
 import static kidzania.reservationgroup.Misc.FuncGlobal.getFormatedCurrency;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.getNormalNumber;
 import static kidzania.reservationgroup.Misc.FuncGlobal.hasConnection;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIParameters;
@@ -67,6 +68,7 @@ public class QuotaRegister extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        getInformationUser();
         SelectGroupRegistered();
     }
 
