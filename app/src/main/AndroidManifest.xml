@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kidzania.reservationgroup">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".FlashScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
+        <activity
+            android:name=".MainMenu"
+            android:label="@string/form_main_menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NoConnection"
+            android:label="@string/form_no_connection_internet"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GroupMenu"
+            android:label="@string/form_group_menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GroupAvailGrp"
+            android:label="@string/form_group_rejected"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddGroup"
+            android:label="@string/form_add_group"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GroupOwner"
+            android:label="@string/form_group_avail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GroupData"
+            android:label="@string/form_group_data"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GroupDraft"
+            android:label="@string/form_group_draf"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ParentListGroup"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ParentSearchList"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchGroupType"
+            android:label="@string/form_search_grouptype"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchProvince"
+            android:label="@string/form_search_province"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchCity"
+            android:label="@string/form_search_city"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchDistrik"
+            android:label="@string/form_search_distrik"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchDistrikArea"
+            android:label="@string/form_search_distrik_area"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchSupporter"
+            android:label="@string/form_search_supporter"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchMainTicketPack"
+            android:label="@string/form_search_ticket_pack"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchPromotor"
+            android:label="@string/form_search_promotor"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchResponsible"
+            android:label="@string/form_search_responsible"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchAddTicketPack"
+            android:label="@string/form_search_ticket_add_pack"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SearchPackage"
+            android:label="@string/form_search_Package"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Photo"
+            android:label="@string/form_photo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".QuotaRegister"
+            android:label="Status"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BookingMenu"
+            android:label="@string/form_booking"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalendarShow"
+            android:label="@string/form_calendar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReservationMenu"
+            android:label="@string/form_reservation_menu"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ParentBookAndResvData"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BookingData"
+            android:label="@string/form_booking_list"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReservationData"
+            android:label="@string/form_reservation_list"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddBooking"
+            android:label="@string/form_add_booking"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChangeDateReservation"
+            android:label="@string/form_change_date"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ModifReservation"
+            android:label="@string/form_modif_booking"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddPackage"
+            android:label="@string/form_add_package"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewReport"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
+        <activity
+            android:name=".GroupPersonal"
+            android:label="@string/form_group_personal"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

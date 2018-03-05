@@ -1,0 +1,601 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myCardviewKataKita"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:clickable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="5dp">
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/logokz"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/textViewField1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Group"
+                android:layout_toRightOf="@+id/imgLogo"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#f20a35"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textID_BOOKING"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textViewField1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/textID_Group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textID_BOOKING"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/textID_PROMOTOR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textID_Group"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/textID_SUPPORTER"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textID_PROMOTOR"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/textID_RESP_ESC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/textID_SUPPORTER"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/textTanggalBuat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Buat"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_toRightOf="@+id/imgLogo"
+                android:layout_below="@+id/textViewField1"/>
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divideHead"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:background="#e9d4d1d1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp">
+            <TextView
+                android:id="@+id/label2"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Supporter"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview2"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_toRightOf="@+id/label2"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Supporter"
+                android:layout_toRightOf="@+id/labelview2"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label3"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Promotor"
+                android:layout_below="@+id/textViewField2"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview3"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField2"
+                android:layout_toRightOf="@+id/label3"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Promotor"
+                android:layout_below="@+id/textViewField2"
+                android:layout_toRightOf="@+id/labelview3"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label4"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:layout_below="@+id/textViewField3"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview4"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField3"
+                android:layout_toRightOf="@+id/label4"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField3"
+                android:layout_toRightOf="@+id/labelview4"
+                android:text="Status"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label5"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Total"
+                android:layout_below="@+id/textViewField4"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview5"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField4"
+                android:layout_toRightOf="@+id/label5"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField4"
+                android:layout_toRightOf="@+id/labelview5"
+                android:text="Total"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label6"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Toddler"
+                android:layout_below="@+id/textViewField5"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview6"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField5"
+                android:layout_toRightOf="@+id/label6"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField5"
+                android:layout_toRightOf="@+id/labelview6"
+                android:text="Toddler"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label7"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Child"
+                android:layout_below="@+id/textViewField6"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview7"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField6"
+                android:layout_toRightOf="@+id/label7"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField6"
+                android:layout_toRightOf="@+id/labelview7"
+                android:text="Child"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label8"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Adult"
+                android:layout_below="@+id/textViewField7"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview8"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField7"
+                android:layout_toRightOf="@+id/label8"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField7"
+                android:layout_toRightOf="@+id/labelview8"
+                android:text="Adult"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label9"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Todd 7Hrs"
+                android:layout_below="@+id/textViewField8"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview9"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField8"
+                android:layout_toRightOf="@+id/label8"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField8"
+                android:layout_toRightOf="@+id/labelview9"
+                android:text="Todd 7Hrs"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label10"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Child 7Hrs"
+                android:layout_below="@+id/textViewField9"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview10"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField9"
+                android:layout_toRightOf="@+id/label10"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField9"
+                android:layout_toRightOf="@+id/labelview10"
+                android:text="Child 7Hrs"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label11"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Adult 7Hrs"
+                android:layout_below="@+id/textViewField10"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview11"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField10"
+                android:layout_toRightOf="@+id/label11"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField10"
+                android:layout_toRightOf="@+id/labelview11"
+                android:text="Adult 7Hrs"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label12"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Baby"
+                android:layout_below="@+id/textViewField11"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview12"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField11"
+                android:layout_toRightOf="@+id/label12"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField11"
+                android:layout_toRightOf="@+id/labelview10"
+                android:text="Baby"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label13"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Senior"
+                android:layout_below="@+id/textViewField12"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview13"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField12"
+                android:layout_toRightOf="@+id/label13"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField12"
+                android:layout_toRightOf="@+id/labelview13"
+                android:text="Senior"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/label14"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:text="Handycap"
+                android:layout_below="@+id/textViewField13"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelview14"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_below="@+id/textViewField13"
+                android:layout_toRightOf="@+id/label14"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewField14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewField13"
+                android:layout_toRightOf="@+id/labelview14"
+                android:text="Handycap"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#050505"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e9d4d1d1" />
+
+        <TableLayout
+            android:id="@+id/Table1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/btnChangeDate"
+                    android:src="@drawable/change_data"
+                    android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/btnCancelBooking"
+                    android:src="@drawable/cancel_booking"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/btnModifBooking"
+                    android:src="@drawable/booking" />
+
+            </TableRow>
+        </TableLayout>
+
+
+        <View
+            android:id="@+id/dividerFooter"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e9d4d1d1" />
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

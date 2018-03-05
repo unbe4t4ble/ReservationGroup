@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".GroupAvail">
+    <item
+        android:id="@+id/btn_save_group"
+        android:orderInCategory="100"
+        android:icon="@drawable/check_not_valid"
+        app:showAsAction="always"
+        android:title="@string/btn_find_group">
+    </item>
+</menu>

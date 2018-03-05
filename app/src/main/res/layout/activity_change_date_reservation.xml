@@ -1,0 +1,64 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_show_quota"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="5dp"
+    android:scrollbars="vertical"
+    tools:context=".BookingMenu"
+    android:background="@drawable/view">
+
+
+    <ScrollView
+        android:id="@+id/Scroll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_booking_date"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/TanggalReservasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:editable="false"
+                android:text="Kamis, 10 Desember 2017"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:focusableInTouchMode="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/str_booking_shift"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/TextSesi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:editable="false"
+                android:text="Pagi"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:focusableInTouchMode="false" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

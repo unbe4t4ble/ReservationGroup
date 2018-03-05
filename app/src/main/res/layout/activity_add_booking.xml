@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_input_booking"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="2dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:isScrollContainer="true">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_booking_school_group"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/edtGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="10dp"
+                android:editable="false"
+                android:hint="@string/str_booking_school_group"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_booking_supporter"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/edtSupporter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="10dp"
+                android:editable="false"
+                android:hint="@string/str_booking_supporter"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_booking_sales"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/edtSales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="10dp"
+                android:editable="false"
+                android:hint="@string/str_booking_sales"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_booking_ticket_package"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/edtTickPack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="10dp"
+                android:editable="false"
+                android:hint="@string/str_booking_ticket_package"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_booking_note"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/edtNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="10dp"
+                android:hint="@string/str_booking_note"
+                android:textSize="14sp"
+                android:inputType="textMultiLine"
+                android:visibility="visible" />
+
+            <TableLayout
+                android:id="@+id/Table1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+                android:isScrollContainer="true">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_bright">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_span="3"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:text="@string/str_booking_session"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/holo_green_dark"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:text="@string/str_booking_toddler"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/holo_red_light"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:text="@string/str_booking_child"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/holo_orange_light"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:text="@string/str_booking_adult"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/EditTodd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/frame_edit_text"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/str_null"
+                        android:inputType="number"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/EditChild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/frame_edit_text"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/str_null"
+                        android:inputType="number"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/EditAdult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/frame_edit_text"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="@string/str_null"
+                        android:inputType="number"
+                        android:textSize="14sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/ViewHargaTodd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray"
+                        android:ems="10"
+                        android:gravity="right"
+                        android:text="@string/str_null"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold"/>
+
+                    <TextView
+                        android:id="@+id/ViewHargaChild"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray"
+                        android:ems="10"
+                        android:gravity="right"
+                        android:text="@string/str_null"
+                        android:textColor="@android:color/holo_red_light"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold"/>
+
+                    <TextView
+                        android:id="@+id/ViewHargaAdult"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray"
+                        android:ems="10"
+                        android:gravity="right"
+                        android:text="@string/str_null"
+                        android:textColor="@android:color/holo_orange_light"
+                        android:textSize="14sp"
+                        android:textStyle="normal|bold"/>
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

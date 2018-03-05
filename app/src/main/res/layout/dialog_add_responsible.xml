@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_dialog_layout_design_user_input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:text="@string/str_add_responsible"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/edtLay1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/edtPanggilan"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="Mr. / Mrs."
+                android:layout_marginBottom="5dp"
+                android:inputType="text"
+                android:layout_marginRight="5dp"
+                android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_toRightOf="@+id/edtLay1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <EditText
+                android:id="@+id/NamaRespon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/str_add_name_responsible"
+                android:layout_marginBottom="5dp"
+                android:inputType="text"
+                android:singleLine="true"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+    </RelativeLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/edtOccupation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_add_occupation_responsible"
+            android:inputType="text"
+            android:layout_marginBottom="5dp"
+            android:singleLine="true"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/str_add_phone_responsible"
+            android:inputType="number"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>

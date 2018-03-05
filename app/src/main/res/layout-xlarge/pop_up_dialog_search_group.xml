@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp">
+
+    <EditText
+        android:id="@+id/edtCariGroupName"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/edittext_bottom_bg"
+        android:hint="@string/hint_search_group"
+        android:inputType="text"
+        android:textColorHint="#cccccc"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/edtCariGroupDistrict"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/edittext_bottom_bg"
+        android:hint="@string/hint_search_group_distrik"
+        android:inputType="text"
+        android:textColorHint="#cccccc"
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnSearchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/btn_search_text"
+        android:textStyle="bold"
+        android:background="@drawable/blue_button"
+        style="@style/DefaultButtonText" />
+
+</LinearLayout>

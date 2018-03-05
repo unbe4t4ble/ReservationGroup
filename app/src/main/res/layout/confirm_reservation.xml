@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="School Reservation Confirmation Form"
+        android:textColor="@color/colorAccent"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RadioGroup
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/BreakDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Break Down"/>
+        <RadioButton
+            android:id="@+id/Combine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Combine"/>
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/RGCombine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="35dp"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/TickLunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ticket + Lunch"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/AmountTickLunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="35dp"
+            android:text="Toddler : 10"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/TickSouv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ticket + Souvenir"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/AmountTickSouv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="35dp"
+            android:text="Toddler : 10"
+            android:visibility="gone" />
+
+        <RadioButton
+            android:id="@+id/TickLunchSouv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ticket + Lunch + Souvenir"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/AmountTickLunchSouv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="35dp"
+            android:text="Toddler : 10"
+            android:visibility="gone" />
+    </RadioGroup>
+
+
+
+</LinearLayout>

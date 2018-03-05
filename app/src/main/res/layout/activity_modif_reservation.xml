@@ -1,0 +1,675 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_input_booking"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingTop="2dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/Scroll1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:isScrollContainer="true">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_booking_school_group"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/ModGroupName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:editable="false"
+                android:text="Kamis, 10 Desember 2017"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_modif_reservation_responsible"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/ModResponsible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:editable="false"
+                android:text="@string/str_modif_reservation_responsible"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_modif_reservation_promotor"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/ModPromotor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:editable="false"
+                android:text="@string/str_modif_reservation_promotor"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+                android:isScrollContainer="true">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_booking_arrival_time"
+                        android:layout_gravity="center"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_booking_leaving_time"
+                        android:layout_gravity="center"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_booking_shift"
+                        android:layout_gravity="center"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_modif_reservation_compliment"
+                        android:layout_gravity="center"
+                        android:textSize="14sp" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/ModArrival"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:editable="false"
+                        android:text="09:00"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:focusableInTouchMode="false"/>
+
+                    <EditText
+                        android:id="@+id/ModLeaving"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:editable="false"
+                        android:text="09:00"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:focusableInTouchMode="false" />
+
+                    <EditText
+                        android:id="@+id/ModShift"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:editable="false"
+                        android:text="Pagi"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:focusableInTouchMode="false" />
+
+                    <EditText
+                        android:id="@+id/ModCompliment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:text="0"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+                </TableRow>
+            </TableLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_modif_reservation_main_pack"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/ModMainTicket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:editable="false"
+                android:text="Kamis, 10 Desember 2017"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TableLayout
+                android:id="@+id/Table1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+                android:isScrollContainer="true">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_bright">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_modif_reservation_customer_type"
+                        android:gravity="center"
+                        android:layout_span="3"
+                        android:textColor="@android:color/black">
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_booking_toddler"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_booking_child"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_light">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_booking_adult"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_orange_light">
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/FieldTodd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/FieldChild"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_light">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/FieldAdult"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_orange_light">
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditTodd"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditChild"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditAdult"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/ViewHargaTodd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/ViewHargaChild"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_red_light"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/ViewHargaAdult"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_orange_light"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/Table2"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+                android:isScrollContainer="true">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/holo_blue_bright">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_modif_reservation_other"
+                        android:gravity="center"
+                        android:layout_span="3"
+                        android:textColor="@android:color/black">
+                    </TextView>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_quota_register_baby"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_quota_register_senior"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_light">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_quota_register_handicap"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_orange_light">
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditBaby"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditSenior"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditHandicap"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/ViewHargaBaby"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/ViewHargaSenior"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_red_light"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/ViewHargaHandicap"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_orange_light"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/str_modif_reservation_add_tick_pack"
+                android:textSize="14sp"/>
+
+            <EditText
+                android:id="@+id/cbAddTicket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:editable="false"
+                android:text="@string/str_modif_reservation_add_tick_pack"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TableLayout
+                android:id="@+id/Table3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+                android:isScrollContainer="true">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_booking_toddler"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_green_dark">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_booking_child"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_red_light">
+                    </TextView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_booking_adult"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="@android:color/holo_orange_light">
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditAddTodd"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditAddChild"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/EditAddAdult"
+                        android:gravity="center"
+                        android:background="@drawable/frame_edit_text"
+                        android:hint="@string/str_null" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/ViewHargaAddTodd"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/ViewHargaAddChild"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_red_light"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/ViewHargaAddAdult"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14sp"
+                        android:ems="10"
+                        android:text="@string/str_null"
+                        android:gravity="right"
+                        android:textColor="@android:color/holo_orange_light"
+                        android:background="@android:color/darker_gray"
+                        android:textStyle="normal|bold">
+                    </TextView>
+                </TableRow>
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/Table4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:shrinkColumns="*"
+                android:isScrollContainer="true">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btnLunchPackage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/str_modif_reservation_lunch_pack"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btnMerchPackage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/str_modif_reservation_merch_pack"
+                        android:textSize="16sp" />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btnBusPackage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:text="@string/str_modif_reservation_bus_pack"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btnOthersPackage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/str_modif_reservation_other_pack"
+                        android:textSize="16sp" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
