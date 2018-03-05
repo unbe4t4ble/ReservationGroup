@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -36,6 +37,7 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.CheckConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.OpenLostConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.hasConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.showTimePicker;
 import static kidzania.reservationgroup.Misc.VarDate.CombineDate;
@@ -106,6 +108,7 @@ public class BookingMenu extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        getInformationUser();
         TanggalReservasi.setText(getStrDateNow());
     }
 
@@ -219,11 +222,7 @@ public class BookingMenu extends AppCompatActivity {
 
     public boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(BookingMenu.this, Manifest.permission.READ_CALENDAR);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     public void requestPermission() {
@@ -235,7 +234,7 @@ public class BookingMenu extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

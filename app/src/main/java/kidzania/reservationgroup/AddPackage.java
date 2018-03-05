@@ -24,6 +24,7 @@ import kidzania.reservationgroup.Misc.CalcPack;
 import kidzania.reservationgroup.SQLite.DataSQLlite;
 
 import static kidzania.reservationgroup.Misc.FuncGlobal.getFormatedCurrency;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.getNormalNumber;
 import static kidzania.reservationgroup.Misc.VarGlobal.HARGA_PACKAGE;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_NUM_RESER;
@@ -44,11 +45,11 @@ public class AddPackage extends AppCompatActivity {
 
     SQLiteListAdapterPackage ListAdapter ;
 
-    ArrayList<String> NAME_PACK_ArrayList = new ArrayList<String>();
-    ArrayList<String> QUANTITY_ArrayList = new ArrayList<String>();
-    ArrayList<String> PRICE_ArrayList = new ArrayList<String>();
-    ArrayList<String> TOTAL_ArrayList = new ArrayList<String>();
-    ArrayList<Integer> Id_PACK_ArrayList = new ArrayList<Integer>();
+    ArrayList<String> NAME_PACK_ArrayList = new ArrayList<>();
+    ArrayList<String> QUANTITY_ArrayList = new ArrayList<>();
+    ArrayList<String> PRICE_ArrayList = new ArrayList<>();
+    ArrayList<String> TOTAL_ArrayList = new ArrayList<>();
+    ArrayList<Integer> Id_PACK_ArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,7 @@ public class AddPackage extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        getInformationUser();
         showResultSearch();
         ShowSQLiteDBdata();
         SUMPackage();

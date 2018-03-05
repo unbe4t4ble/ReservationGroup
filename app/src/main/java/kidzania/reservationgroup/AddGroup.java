@@ -33,6 +33,7 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.DefaultVarGroup;
 import static kidzania.reservationgroup.Misc.FuncGlobal.SingleDialodWithOutVoid;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.hideKeyboard;
 import static kidzania.reservationgroup.Misc.VarGlobal.ADDR;
 import static kidzania.reservationgroup.Misc.VarGlobal.AMNT_A;
@@ -122,6 +123,7 @@ public class AddGroup extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        getInformationUser();
         setTextFromSearch();
     }
 
@@ -584,28 +586,31 @@ public class AddGroup extends AppCompatActivity {
 
     private boolean isValid(){
         boolean isValid = true;
-        if (GTYPE.equals("School")) {
-            if ((!CheckingGroupName()) || (!CheckingGrade()) || (!CheckingGroupType()) || (!CheckingGroupCatagory()) || (!CheckingGroupAddress()) || (!CheckingGroupDistrikArea()) ||
-                    (!CheckingGroupDistrik()) || (!CheckingGroupCity()) || (!CheckingGroupProvince()) ||
-                    (!CheckingGroupZipCode()) || (!CheckingGroupPhone()) || (!CheckingGroupPrincipal()) || (!CheckingGroupPIC()) || (!CheckingGroupNoPIC()) ||
-                    (!CheckingGroupChild()) || (!CheckingGroupAdult())) {
-                isValid = false;
-            }
-        }else
-        if (GTYPE.equals("Company")) {
-            if ((!CheckingGroupName()) || (!CheckingGroupAddress()) || (!CheckingGroupDistrikArea()) ||
-                    (!CheckingGroupDistrik()) || (!CheckingGroupCity()) || (!CheckingGroupProvince()) ||
-                    (!CheckingGroupZipCode()) || (!CheckingGroupPhone()) || (!CheckingGroupPIC()) || (!CheckingGroupNoPIC())) {
-                isValid = false;
-            }
-        }else
-        if (GTYPE.equals("Course") || GTYPE.equals("Foundation")) {
-            if ((!CheckingGroupName()) || (!CheckingGroupAddress()) || (!CheckingGroupDistrikArea()) ||
-                    (!CheckingGroupDistrik()) || (!CheckingGroupCity()) || (!CheckingGroupProvince()) ||
-                    (!CheckingGroupZipCode()) || (!CheckingGroupPhone()) || (!CheckingGroupPrincipal()) || (!CheckingGroupPIC()) || (!CheckingGroupNoPIC()) ||
-                    (!CheckingGroupChild()) || (!CheckingGroupAdult())) {
-                isValid = false;
-            }
+        switch (GTYPE) {
+            case "School":
+                if ((!CheckingGroupName()) || (!CheckingGrade()) || (!CheckingGroupType()) || (!CheckingGroupCatagory()) || (!CheckingGroupAddress()) || (!CheckingGroupDistrikArea()) ||
+                        (!CheckingGroupDistrik()) || (!CheckingGroupCity()) || (!CheckingGroupProvince()) ||
+                        (!CheckingGroupZipCode()) || (!CheckingGroupPhone()) || (!CheckingGroupPrincipal()) || (!CheckingGroupPIC()) || (!CheckingGroupNoPIC()) ||
+                        (!CheckingGroupChild()) || (!CheckingGroupAdult())) {
+                    isValid = false;
+                }
+                break;
+            case "Company":
+                if ((!CheckingGroupName()) || (!CheckingGroupAddress()) || (!CheckingGroupDistrikArea()) ||
+                        (!CheckingGroupDistrik()) || (!CheckingGroupCity()) || (!CheckingGroupProvince()) ||
+                        (!CheckingGroupZipCode()) || (!CheckingGroupPhone()) || (!CheckingGroupPIC()) || (!CheckingGroupNoPIC())) {
+                    isValid = false;
+                }
+                break;
+            case "Course":
+            case "Foundation":
+                if ((!CheckingGroupName()) || (!CheckingGroupAddress()) || (!CheckingGroupDistrikArea()) ||
+                        (!CheckingGroupDistrik()) || (!CheckingGroupCity()) || (!CheckingGroupProvince()) ||
+                        (!CheckingGroupZipCode()) || (!CheckingGroupPhone()) || (!CheckingGroupPrincipal()) || (!CheckingGroupPIC()) || (!CheckingGroupNoPIC()) ||
+                        (!CheckingGroupChild()) || (!CheckingGroupAdult())) {
+                    isValid = false;
+                }
+                break;
         }
         return isValid;
     }
