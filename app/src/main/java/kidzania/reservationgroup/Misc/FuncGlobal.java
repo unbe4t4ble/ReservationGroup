@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -32,9 +33,6 @@ import static kidzania.reservationgroup.Misc.VarDate.DayName;
 import static kidzania.reservationgroup.Misc.VarGlobal.*;
 import static kidzania.reservationgroup.Misc.VarUrl.TOKEN;
 
-/**
- * Created by mubarik on 06/11/2017.
- */
 
 public class FuncGlobal {
 
@@ -87,11 +85,8 @@ public class FuncGlobal {
         }
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null && activeNetwork.isConnected()) {
-            return true;
-        }
+        return activeNetwork != null && activeNetwork.isConnected();
 
-        return false;
     }
 
     public static void SingleDialodWithOutVoid(Context context, String Judul, String Pesan){
@@ -189,14 +184,8 @@ public class FuncGlobal {
     }
 
     public static boolean isDeviceSupportCamera(Context context) {
-        if (context.getPackageManager().hasSystemFeature(
-                PackageManager.FEATURE_CAMERA)) {
-            // this device has a camera
-            return true;
-        } else {
-            // no camera on this device
-            return false;
-        }
+        return context.getPackageManager().hasSystemFeature(
+                PackageManager.FEATURE_CAMERA);
     }
 
     public static String getFormatedCurrency(Context context,String value) {
@@ -218,7 +207,7 @@ public class FuncGlobal {
     }
 
     public static String getNormalNumber(String value){
-        String hasil = "";
+        String hasil;
         hasil = value.replace(",","");
         hasil = hasil.replace(".", "");
         hasil = hasil.replace("Rp ", "");
@@ -352,6 +341,20 @@ public class FuncGlobal {
             validDate = false;
         }
         return validDate;
+    }
+
+    public static void getInformationUser(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        cursor = db.rawQuery("SELECT ID_USER, U_LOGIN, U_PASS, GRPRSVMOD, FLAG FROM TBL_USER",null);
+        cursor.moveToFirst();
+        if (cursor.getCount()>0) {
+            cursor.moveToPosition(0);
+            ID_USER = cursor.getString(cursor.getColumnIndex("ID_USER"));
+            U_LOGIN = cursor.getString(cursor.getColumnIndex("U_LOGIN"));
+            U_PASS = cursor.getString(cursor.getColumnIndex("U_PASS"));
+            GRPRSVMOD = cursor.getString(cursor.getColumnIndex("GRPRSVMOD"));
+            FLAG = cursor.getString(cursor.getColumnIndex("FLAG"));
+        }
     }
 
 }
