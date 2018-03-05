@@ -31,6 +31,7 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.CheckConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
 import static kidzania.reservationgroup.Misc.FuncGlobal.getFormatedCurrency;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.VarDate.DateReservDD;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIParameters;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIValueParams;
@@ -68,6 +69,7 @@ public class ParentBookAndResvData extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        getInformationUser();
         registerReceiver(mMessageNoData, new IntentFilter(RESV_EMPTY_DATA));
     }
 

@@ -32,6 +32,7 @@ import kidzania.reservationgroup.ViewHolder.WrapContentLinearLayoutManager;
 import static kidzania.reservationgroup.Misc.FuncGlobal.CheckConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIParameters;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIValueParams;
 import static kidzania.reservationgroup.Misc.VarGlobal.GROUP_TIMEOUT;
@@ -76,6 +77,7 @@ public class ParentListGroup extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        getInformationUser();
         registerReceiver(mMessageTimeOut, new IntentFilter(GROUP_TIMEOUT));
         registerReceiver(mMessageLoadMore, new IntentFilter(GROUP_TRY_AGAIN));
     }

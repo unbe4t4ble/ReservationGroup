@@ -42,6 +42,7 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.SingleDialodWithOutVoid;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
 import static kidzania.reservationgroup.Misc.FuncGlobal.getFormatedCurrency;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.getNormalNumber;
 import static kidzania.reservationgroup.Misc.FuncGlobal.isValidDate;
 import static kidzania.reservationgroup.Misc.FuncGlobal.showTimePicker;
@@ -181,6 +182,7 @@ public class ModifReservation extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        getInformationUser();
         setTextFromSearch();
         registerReceiver(mMessageFinish, new IntentFilter(NOTIF_FINISH));
     }
