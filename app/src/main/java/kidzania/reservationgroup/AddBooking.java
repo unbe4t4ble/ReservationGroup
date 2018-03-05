@@ -26,6 +26,7 @@ import kidzania.reservationgroup.Misc.CalcTicket;
 import static kidzania.reservationgroup.Misc.FuncGlobal.SingleDialodWithOutVoid;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.isValidDate;
 import static kidzania.reservationgroup.Misc.VarDate.DateReservMM;
 import static kidzania.reservationgroup.Misc.VarGlobal.ADULTO;
@@ -89,6 +90,7 @@ public class AddBooking extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        getInformationUser();
         setTextFromSearch();
     }
 
@@ -132,19 +134,21 @@ public class AddBooking extends AppCompatActivity {
     }
 
     private void setTextFromSearch() {
-        if (SENDER_CLASS.equals("GroupOwner")) {
-            edtGroup.setText(GRPNAME);
-        }else
-        if (SENDER_CLASS.equals("SearchSupporter")){
-            edtSupporter.setText(STR_USUARIO_ALTA);
-        }else
-        if (SENDER_CLASS.equals("SearchMainTicketPack")){
-            edtTickPack.setText(STR_ID_PAQ);
-            ViewHargaTodd.setText(PriceTodd);
-            ViewHargaChild.setText(PriceChild);
-            ViewHargaAdult.setText(PriceAdult);
-            clearEditTextMain();
-            setOnChangeEditTextMain();
+        switch (SENDER_CLASS) {
+            case "GroupOwner":
+                edtGroup.setText(GRPNAME);
+                break;
+            case "SearchSupporter":
+                edtSupporter.setText(STR_USUARIO_ALTA);
+                break;
+            case "SearchMainTicketPack":
+                edtTickPack.setText(STR_ID_PAQ);
+                ViewHargaTodd.setText(PriceTodd);
+                ViewHargaChild.setText(PriceChild);
+                ViewHargaAdult.setText(PriceAdult);
+                clearEditTextMain();
+                setOnChangeEditTextMain();
+                break;
         }
         edtSales.setText(U_LOGIN);
     }
@@ -262,11 +266,7 @@ public class AddBooking extends AppCompatActivity {
 
     private boolean CheckingText() {
 
-        if ((!CheckingCBGroup()) || (!CheckingCBSupport()) || (!CheckingCBPromotor()) || (!CheckingCBTicket()) || (!CheckingTextHarga())) {
-            return false;
-        } else {
-            return true;
-        }
+        return !((!CheckingCBGroup()) || (!CheckingCBSupport()) || (!CheckingCBPromotor()) || (!CheckingCBTicket()) || (!CheckingTextHarga()));
     }
 
     private boolean ValidateQuotaChild() {
