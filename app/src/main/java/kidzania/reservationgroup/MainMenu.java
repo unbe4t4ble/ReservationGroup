@@ -18,6 +18,7 @@ import kidzania.reservationgroup.SQLite.DataSQLlite;
 
 import static kidzania.reservationgroup.Misc.FuncGlobal.CheckConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.ShowDialogExitApp;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.VarGlobal.U_LOGIN;
 import static kidzania.reservationgroup.Misc.VarGlobal.dbHelper;
 
@@ -65,6 +66,12 @@ public class MainMenu extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.button_logout, menu);
         return true;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        getInformationUser();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

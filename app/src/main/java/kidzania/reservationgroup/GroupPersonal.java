@@ -33,6 +33,7 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.CheckConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.OpenLostConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 import static kidzania.reservationgroup.Misc.FuncGlobal.hasConnection;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIParameters;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIValueParams;
@@ -76,6 +77,7 @@ public class GroupPersonal extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        getInformationUser();
         registerReceiver(mMessageTimeOut, new IntentFilter(GROUP_TIMEOUT));
         registerReceiver(mMessageLoadMore, new IntentFilter(GROUP_TRY_AGAIN));
         refreshData();

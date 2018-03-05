@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import static kidzania.reservationgroup.Misc.FuncGlobal.CheckConnection;
+import static kidzania.reservationgroup.Misc.FuncGlobal.getInformationUser;
 
 public class GroupMenu extends AppCompatActivity {
 
@@ -44,6 +45,12 @@ public class GroupMenu extends AppCompatActivity {
                 OpenGroupRejected();
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        getInformationUser();
     }
 
     @Override
