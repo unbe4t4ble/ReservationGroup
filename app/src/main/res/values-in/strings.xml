@@ -4,7 +4,7 @@
     <string name="form_group_avail">PILIH GROUP</string>
     <string name="form_group_data">DAFTAR DATA</string>
     <string name="form_group_draf">DAFTAR DRAF</string>
-    <string name="form_group_rejected">DAFTAR DITOLAK</string>
+    <string name="form_group_rejected">DAFTAR GROUP</string>
     <string name="form_no_connection_internet">TIDAK ADA KONEKSI</string>
     <string name="form_add_group">TAMBAH GROUP</string>
     <string name="form_search_grouptype">TIPE GROUP</string>
@@ -29,6 +29,7 @@
     <string name="form_search_Package">PAKET</string>
     <string name="form_add_package">TAMBAH PAKET</string>
     <string name="form_group_personal">DAFTAR PERSONAL</string>
+    <string name="form_history_resv">RIWAYAT</string>
 
     <string name="app_name">Reservation Group</string>
 
@@ -81,7 +82,7 @@
     <string name="message_invalid_group_grade">Jenis sekolah harus diisi.</string>
     <string name="message_invalid_group_type">Tipe sekolah harus diisi.</string>
     <string name="message_invalid_group_catagory">Katagori harus diisi.</string>
-    <string name="message_invalid_group_address">Alamat sekolah harus diisi.</string>
+    <string name="message_invalid_group_address">Alamat harus diisi.</string>
     <string name="message_invalid_group_province">Provinsi harus diisi.</string>
     <string name="message_invalid_group_city">Kota/Kabupaten harus diisi.</string>
     <string name="message_invalid_group_distrik">Kecamatan harus diisi.</string>
@@ -120,6 +121,13 @@
     <string name="message_invalid_modif_ticket">Tiket belum diisi.</string>
     <string name="message_invalid_modif_add_ticket">Tiket tambahan belum diisi.</string>
     <string name="message_invalid_modif_adult">Tiket dewasa tidak boleh kosong.</string>
+    <string name="message_reason_cancel">Mohon tuliskan alasan pembatalan.</string>
+    <string name="message_descrp_reason_cancel">Mohon deskripsikan alasan pembatalan.</string>
+    <string name="message_confirm_cancel">Apakah Anda benar-benar ingin membatalkan kuota pemesanan yang dipilih?</string>
+    <string name="message_warning_entered">Tidak dapat membatalkan reservasi. Kelompok ini telah memasuki kidzania.</string>
+    <string name="message_warning_access1">Tidak dapat mengubah tanggal pemesanan. Gelang sudah didaftarkan sebelumnya.</string>
+    <string name="message_warning_access2">Silakan meminta departemen Airport untuk memindahkan mereka.</string>
+    <string name="message_invalid_pic_name">Nama PIC harus diisi.</string>
 
     <string name="str_group_name">Nama Group*</string>
     <string name="str_group_grade">Tingkat*</string>
@@ -226,6 +234,12 @@
     <string name="str_add_package_total">Total</string>
     <string name="str_add_package_items">Items</string>
     <string name="str_add_package_list">List Package</string>
+
+    <string name="str_reason_cancel">Alasan</string>
+    <string name="str_reason_deskrip">Deskripsi</string>
+
+    <string name="str_name_pid">Nama PIC</string>
+    <string name="str_id_card">No KTP</string>
 
     <string name="str_null">0</string>
 

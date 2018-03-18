@@ -354,7 +354,40 @@ public class FuncGlobal {
             U_PASS = cursor.getString(cursor.getColumnIndex("U_PASS"));
             GRPRSVMOD = cursor.getString(cursor.getColumnIndex("GRPRSVMOD"));
             FLAG = cursor.getString(cursor.getColumnIndex("FLAG"));
+            isAdmin = (U_LOGIN.equals("indah") || U_LOGIN.equals("median") || U_LOGIN.equals("mubarik"));
         }
+    }
+
+    public static void setDefaultGroup(){
+        ID_NUM_ESC = ""; //ID Group
+        GRPNAME = ""; //Nama Group
+        FECHA_ALTA = ""; //Tanggal pembuatan
+        STATUS_GROUP = "";
+        GRADE = ""; //Tingkat SD/SMP/SMA
+        GRADE_TYP = ""; // Tipe Tingkat SD Negeri/SD Swasta dll.
+        SCH_TYPE = ""; // Tipe Tingkat SD Negeri/SD Swasta dll.
+        ADDR = ""; //Alamat Sekolah/Group
+        PROVINCE = ""; // Provinci
+        CITY = ""; // Kota/Kabupaten.
+        DISTRICT = ""; //Kecamatan
+        AREA = ""; //Kelurahan
+        ZIPCODE = ""; // Kodepos
+        PHONE = ""; // telepon sekolah
+        FAX = ""; //Fax sekolah
+        EMAIL = ""; //email sekolah
+        PRINCIPAL = ""; // kepala sekolah/group
+        PRINC_HP = ""; // no handphone kepala sekolah
+        PIC = ""; // PIC
+        NO_HP = ""; // no handphone PIC
+        AMNT_T = ""; // jumlah anak dibawah 5 tahun
+        AMNT_C = ""; // jumlah anak anak
+        AMNT_A = ""; // jumlah guru/dewasa.
+        BGT_TRIP = ""; //Bugdet trip
+        AMNT_FILTRP = ""; // frekuensi trip
+        FILTRP = ""; // field trip/jadwal wisata
+        PLC_TRIP = ""; // place trip/tempat wisata
+        IDUSR_OWN = ""; // pemilik group/ id Sales
+        PIC_ID = ""; // pemilik group/ id Sales
     }
 
 }

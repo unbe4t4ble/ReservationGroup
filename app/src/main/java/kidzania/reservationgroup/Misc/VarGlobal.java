@@ -6,10 +6,6 @@ import java.util.ArrayList;
 
 import kidzania.reservationgroup.SQLite.DataSQLlite;
 
-/**
- * Created by mubarik on 06/11/2017.
- */
-
 public class VarGlobal {
 
     //Jenis jenis STS_MODIF
@@ -40,6 +36,7 @@ public class VarGlobal {
     //broadcast from draft
     public static final String GET_DETAIL_DATA_GROUP = "GET_DETAIL_DATA_GROUP";
     public static final String TAKE_PHOTO_GROUP = "TAKE_PHOTO_GROUP";
+    public static final String POSTING_GROUP = "POSTING_GROUP";
 
     //broadcast from data
     public static final String SEND_DRAFT = "SEND_DRAFT";
@@ -82,8 +79,9 @@ public class VarGlobal {
     public static final String HEAD_GET_DATA_RESPONSIBLE = "SEARCH_RESPONSIBLE";
     public static final String HEAD_GET_DATA_PACKAGE = "SEARCH_PACKAGE";
     public static final String HEAD_GET_DATA_HARGA_PACKAGE = "DATA_HARGA_PACKAGE";
-    public static final String HEAD_GET_DATA_PACKAGE_RESERV = "DATA_PACKAGE_RESERV";
+    static final String HEAD_GET_DATA_PACKAGE_RESERV = "DATA_PACKAGE_RESERV";
     public static final String HEAD_GET_DATA_PERSONAL_ID = "GET_DATA_PERSONAL";
+    public static final String HEAD_GET_DATA_HISTORY = "DATA_HISTORY";
 
     //String LOGIN
     public static String ID_USER, U_LOGIN, U_PASS, GRPRSVMOD, FLAG;
@@ -229,5 +227,8 @@ public class VarGlobal {
     public static int AllAmountGetPaket;
     public static Boolean isCombineLunch = false, isCombineSouvenir = false, isCombineAll = false;
     public static Boolean isModifReservation = false;
+    public static Boolean isAdmin = false;
+    public static boolean isFromList = false;
+    public static String LunchBefore, SouvernirBefore, BusBefore;
 
 }

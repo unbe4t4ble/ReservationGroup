@@ -73,7 +73,9 @@ import static kidzania.reservationgroup.Misc.VarGlobal.SCH_TYPE;
 import static kidzania.reservationgroup.Misc.VarGlobal.SENDER_CLASS;
 import static kidzania.reservationgroup.Misc.VarGlobal.ZIPCODE;
 import static kidzania.reservationgroup.Misc.VarGlobal.dbHelper;
+import static kidzania.reservationgroup.Misc.VarGlobal.isAdmin;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_EDIT_DATA_GROUP;
+import static kidzania.reservationgroup.Misc.VarUrl.URL_EDIT_DATA_GROUP_ADMIN;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_SEND_DATA_GROUP;
 
 public class AddGroup extends AppCompatActivity {
@@ -126,12 +128,6 @@ public class AddGroup extends AppCompatActivity {
         getInformationUser();
         setTextFromSearch();
     }
-
-    @Override
-    public void onPause(){
-        super.onPause();
-    }
-
 
 
     @Override
@@ -735,10 +731,13 @@ public class AddGroup extends AppCompatActivity {
         APIParameters.add("filtrp");
         APIParameters.add("bgt_trip");
         APIParameters.add("plc_trip");
-        APIParameters.add("idusr_own");
         APIParameters.add("grprsvmod");
         APIParameters.add("gtype");
         APIParameters.add("pic_id");
+        if ((isAdmin || !isAdmin) && !IS_EDIT) {
+            APIParameters.add("id_user");
+            APIParameters.add("idusr_own");
+        }
     }
 
     private void AssignValueParam(){
@@ -769,13 +768,16 @@ public class AddGroup extends AppCompatActivity {
         APIValueParams.add(FILTRP);
         APIValueParams.add(BGT_TRIP);
         APIValueParams.add(PLC_TRIP);
-        APIValueParams.add(ID_USER);
         APIValueParams.add(GRPRSVMOD);
         APIValueParams.add(GTYPE);
         if (GTYPE.equals("Personal")) {
             APIValueParams.add(PIC_ID);
         }else{
             APIValueParams.add("0");
+        }
+        if ((isAdmin || !isAdmin) && !IS_EDIT) {
+            APIValueParams.add(ID_USER);
+            APIValueParams.add(ID_USER);
         }
     }
 
@@ -815,7 +817,11 @@ public class AddGroup extends AppCompatActivity {
         APIParameters.add("id_num_esc");
         APIValueParams.add(ID_NUM_ESC);
         MultiParamGetDataJSON SaveGroup = new MultiParamGetDataJSON();
-        SaveGroup.init(APIValueParams, APIParameters, URL_EDIT_DATA_GROUP, AddGroup.this, json_edit_group, true);
+        if (isAdmin){
+            SaveGroup.init(APIValueParams, APIParameters, URL_EDIT_DATA_GROUP_ADMIN, AddGroup.this, json_edit_group, true);
+        }else {
+            SaveGroup.init(APIValueParams, APIParameters, URL_EDIT_DATA_GROUP, AddGroup.this, json_edit_group, true);
+        }
     }
 
     MultiParamGetDataJSON.JSONObjectResult json_edit_group = new MultiParamGetDataJSON.JSONObjectResult() {

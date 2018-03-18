@@ -17,6 +17,7 @@ import kidzania.reservationgroup.R;
 
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
+import static kidzania.reservationgroup.Misc.FuncGlobal.setDefaultGroup;
 import static kidzania.reservationgroup.Misc.VarGlobal.ADDR;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIParameters;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIValueParams;
@@ -35,15 +36,11 @@ import static kidzania.reservationgroup.Misc.VarGlobal.PROVINCE;
 import static kidzania.reservationgroup.Misc.VarGlobal.ZIPCODE;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_GET_DATA_PERSONAL_ID;
 
-/**
- * Created by mubarik on 20/02/2018.
- */
-
 public class PersonalViewHolder extends RecyclerView.ViewHolder {
     public TextView textviewField1,textviewField2,textviewField3,textviewField4,textviewField5,textviewField6,textviewField7;
     public TextView textviewField8,textviewField9,textviewField10,textviewField11,textViewID;
-    Context context;
-    String ID_PERSONAL;
+    private Context context;
+    private String ID_PERSONAL;
 
     public PersonalViewHolder(View itemView) {
         super(itemView);
@@ -88,6 +85,7 @@ public class PersonalViewHolder extends RecyclerView.ViewHolder {
                 JSONArray jsonArray = jsonObject.getJSONArray(HEAD_GET_DATA_PERSONAL_ID);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject objData = jsonArray.getJSONObject(i);
+                    setDefaultGroup();
                     PIC_ID = objData.getString("ID");
                     ADDR = objData.getString("ADDRESS");
                     PROVINCE = objData.getString("PROVINCE");

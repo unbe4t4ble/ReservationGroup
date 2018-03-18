@@ -1,10 +1,19 @@
 package kidzania.reservationgroup.ViewHolder;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -12,9 +21,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import kidzania.reservationgroup.API.MultiParamGetDataJSON;
+import kidzania.reservationgroup.ChangeDateReservation;
+import kidzania.reservationgroup.HistoryReservation;
 import kidzania.reservationgroup.ModifReservation;
 import kidzania.reservationgroup.R;
 
+import static android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN;
+import static kidzania.reservationgroup.Misc.FuncGlobal.SingleDialodWithOutVoid;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
 import static kidzania.reservationgroup.Misc.FuncGlobal.setDefaultVar;
@@ -47,6 +60,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.GPO;
 import static kidzania.reservationgroup.Misc.VarGlobal.GRPVOU;
 import static kidzania.reservationgroup.Misc.VarGlobal.HANDICAP;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_GET_DATA_RESERVATION;
+import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_STATUS;
 import static kidzania.reservationgroup.Misc.VarGlobal.HORA_SALIDA;
 import static kidzania.reservationgroup.Misc.VarGlobal.IDPACK_ADD;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_LUNCH;
@@ -58,6 +72,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.ID_PAQ;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_RESP_AGE;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_RESP_ESC;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_SOUV;
+import static kidzania.reservationgroup.Misc.VarGlobal.ID_USER;
 import static kidzania.reservationgroup.Misc.VarGlobal.INFANTE;
 import static kidzania.reservationgroup.Misc.VarGlobal.INSEN;
 import static kidzania.reservationgroup.Misc.VarGlobal.NDISC;
@@ -97,12 +112,11 @@ import static kidzania.reservationgroup.Misc.VarGlobal.SVR_ADICIONAL;
 import static kidzania.reservationgroup.Misc.VarGlobal.TAX;
 import static kidzania.reservationgroup.Misc.VarGlobal.TOTAL_APAGAR;
 import static kidzania.reservationgroup.Misc.VarGlobal.USUARIO_ALTA;
+import static kidzania.reservationgroup.Misc.VarGlobal.isAdmin;
+import static kidzania.reservationgroup.Misc.VarGlobal.isFromList;
 import static kidzania.reservationgroup.Misc.VarGlobal.isModifReservation;
+import static kidzania.reservationgroup.Misc.VarUrl.URL_EDIT_CANCEL_RESERVATION;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_GET_DATA_RESERVATION_ID;
-
-/**
- * Created by mubarik on 06/11/2017.
- */
 
 public class ReservationViewHolder extends RecyclerView.ViewHolder {
 
@@ -111,7 +125,9 @@ public class ReservationViewHolder extends RecyclerView.ViewHolder {
     public TextView textviewField8,textviewField9,textviewField10,textviewField11,textviewField12,textviewField13,textviewField14;
     public TextView textviewField15,textviewField16,textviewField17;
 
-    Context context;
+    private Context context;
+
+    private String strReason, strDeskrip;
 
     public ReservationViewHolder(View itemView) {
         super(itemView);
@@ -143,7 +159,43 @@ public class ReservationViewHolder extends RecyclerView.ViewHolder {
         textviewField16 = (TextView) itemView.findViewById(R.id.textViewField16);
         textviewField17 = (TextView) itemView.findViewById(R.id.textViewField17);
 
+        ImageView btnChangeDate = (ImageView) itemView.findViewById(R.id.btnChangeDate);
+        ImageView btnCancelBooking = (ImageView) itemView.findViewById(R.id.btnCancelBooking);
         ImageView btnModifBooking = (ImageView) itemView.findViewById(R.id.btnModifBooking);
+        ImageButton btnHistory = (ImageButton) itemView.findViewById(R.id.btnHistory);
+
+        if (isAdmin) {
+            btnChangeDate.setVisibility(View.VISIBLE);
+            btnCancelBooking.setVisibility(View.VISIBLE);
+            btnHistory.setVisibility(View.VISIBLE);
+            btnChangeDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setVariable();
+                    if(isValidateCancelBooking(v)) {
+                        v.getContext().startActivity(new Intent(v.getContext(), ChangeDateReservation.class));
+                    }
+                }
+            });
+            btnCancelBooking.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setVariable();
+                    if(isValidateCancelBooking(v)) {
+                        DialogCancelBooking();
+                    }
+                }
+            });
+
+            btnHistory.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setVariable();
+                    v.getContext().startActivity(new Intent(v.getContext(), HistoryReservation.class));
+                }
+            });
+        }
+
         btnModifBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,7 +205,162 @@ public class ReservationViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
+    private void setVariable(){
+        ID_NUM_RESER = textID_BOOKING.getText().toString();
+        STATUS_RESERV = textviewField2.getText().toString();
+        NINO = textviewField7.getText().toString();
+        ADULTO = textviewField8.getText().toString();
+    }
+
+    private boolean isValidateCancelBooking(View v){
+        boolean isValid = false;
+        switch (STATUS_RESERV) {
+            case "ENTERED":
+                SingleDialodWithOutVoid(
+                        v.getContext(),
+                        v.getContext().getString(R.string.message_dialog_warning),
+                        v.getContext().getString(R.string.message_warning_entered));
+                break;
+            case "ACCESSING":
+            case "TEMP ACC":
+                SingleDialodWithOutVoid(
+                        v.getContext(),
+                        v.getContext().getString(R.string.message_dialog_warning),
+                        v.getContext().getString(R.string.message_warning_access1) + "\n" + v.getContext().getString(R.string.message_warning_access2));
+                break;
+            case "CANCEL":
+                SingleDialodWithOutVoid(
+                        v.getContext(),
+                        v.getContext().getString(R.string.message_dialog_warning),
+                        v.getContext().getString(R.string.message_warning_change_date));
+                break;
+            default:
+                isValid = true;
+                break;
+        }
+        return isValid;
+    }
+
+    private void DialogCancelBooking(){
+        AlertDialog.Builder sayWindows = new AlertDialog.Builder(context);
+        View mView = LayoutInflater.from(context).inflate(R.layout.pop_two_button, null);
+        final TextView txtJudul = (TextView) mView.findViewById(R.id.txtJudul);
+        final TextView txtMessage = (TextView) mView.findViewById(R.id.txtMessage);
+        final Button btnYes = (Button) mView.findViewById(R.id.btnYes);
+        final Button btnNo = (Button) mView.findViewById(R.id.btnNo);
+        txtJudul.setText(context.getString(R.string.message_dialog_confirmation));
+        txtMessage.setText(context.getString(R.string.message_confirm_cancel));
+        sayWindows.setView(mView);
+        final AlertDialog mAlertDialog = sayWindows.create();
+
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAlertDialog.dismiss();
+                FormCancel();
+            }
+        });
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAlertDialog.dismiss();
+            }
+        });
+        mAlertDialog.show();
+    }
+
+    private void FormCancel(){
+        AlertDialog.Builder formCancel = new AlertDialog.Builder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_cancel_booking, null);
+        final RadioButton edtReason1 = (RadioButton) view.findViewById(R.id.Reason1);
+        final RadioButton edtReason2 = (RadioButton) view.findViewById(R.id.Reason2);
+        final EditText edtDeskrip = (EditText) view.findViewById(R.id.edtDeskripsi);
+        formCancel.setPositiveButton(context.getString(R.string.btn_dialog_save), null);
+        formCancel.setNegativeButton(context.getString(R.string.btn_dialog_cancel), null);
+
+        edtReason1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                strReason = edtReason1.getText().toString();
+            }
+        });
+
+        edtReason2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                strReason = edtReason2.getText().toString();
+            }
+        });
+
+        final AlertDialog Adialog = formCancel.create();
+        Adialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|SOFT_INPUT_ADJUST_PAN);
+        Adialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button btn = Adialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        strDeskrip = edtDeskrip.getText().toString();
+
+                        if (TextUtils.isEmpty(strReason)){
+                            SingleDialodWithOutVoid(context,
+                                    context.getString(R.string.message_dialog_warning),
+                                    context.getString(R.string.message_reason_cancel));
+                        }else
+                        if (TextUtils.isEmpty(strDeskrip)){
+                            SingleDialodWithOutVoid(context,
+                                    context.getString(R.string.message_dialog_warning),
+                                    context.getString(R.string.message_descrp_reason_cancel));
+                        }else{
+                            strReason = "Cancel : "+strReason+", "+strDeskrip;
+                            cancelBooking();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private void cancelBooking(){
+        AssignParam();
+        MultiParamGetDataJSON SaveCancel = new MultiParamGetDataJSON();
+        SaveCancel.init(APIValueParams, APIParameters, URL_EDIT_CANCEL_RESERVATION, context, json_cancel, true);
+    }
+
+    private MultiParamGetDataJSON.JSONObjectResult json_cancel = new MultiParamGetDataJSON.JSONObjectResult() {
+        @Override
+        public void gotJSONObject(JSONObject jsonObject){
+            try {
+                JSONArray jsonArray = jsonObject.getJSONArray(HEAD_STATUS);
+                boolean isSuccess = false;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject objData = jsonArray.getJSONObject(i);
+                    isSuccess = objData.getString("STATUS").equals("1");
+                }
+                if (isSuccess){
+                    SingleDialodWithOutVoid(context, context.getString(R.string.message_dialog_Information), context.getString(R.string.message_success_edit_data));
+                }else{
+                    SingleDialodWithOutVoid(context, context.getString(R.string.message_dialog_warning), context.getString(R.string.message_failed_edit_data));
+                }
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
     private void AssignParam(){
+        clearAPIParams();
+        clearAPIValueParam();
+        APIParameters.add("ID_NUM_RESER");
+        APIValueParams.add(ID_NUM_RESER);
+        APIParameters.add("IDUSER");
+        APIValueParams.add(ID_USER);
+        APIParameters.add("REASON");
+        APIValueParams.add(strReason);
+    }
+
+    private void AssignParamGetData(){
         clearAPIParams();
         clearAPIValueParam();
         APIParameters.add("ID_NUM_RESER");
@@ -161,7 +368,7 @@ public class ReservationViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void getDataReservation(){
-        AssignParam();
+        AssignParamGetData();
         MultiParamGetDataJSON getDataID = new MultiParamGetDataJSON();
         getDataID.init(APIValueParams, APIParameters, URL_GET_DATA_RESERVATION_ID, context, json_reservation, true);
     }
@@ -252,12 +459,12 @@ public class ReservationViewHolder extends RecyclerView.ViewHolder {
                     NOTE = objData.getString("NOTE");
                 }
                 isModifReservation = true;
+                isFromList = true;
                 context.startActivity(new Intent(itemView.getContext(), ModifReservation.class));
             }catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     };
-
 
 }

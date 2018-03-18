@@ -59,7 +59,9 @@ import static kidzania.reservationgroup.Misc.VarGlobal.AmountAdult;
 import static kidzania.reservationgroup.Misc.VarGlobal.AmountChild;
 import static kidzania.reservationgroup.Misc.VarGlobal.AmountTodd;
 import static kidzania.reservationgroup.Misc.VarGlobal.BEBE;
+import static kidzania.reservationgroup.Misc.VarGlobal.BusBefore;
 import static kidzania.reservationgroup.Misc.VarGlobal.COMPLIMENT5;
+import static kidzania.reservationgroup.Misc.VarGlobal.COMPLIMENT7;
 import static kidzania.reservationgroup.Misc.VarGlobal.G_MAdult;
 import static kidzania.reservationgroup.Misc.VarGlobal.G_MPopChild;
 import static kidzania.reservationgroup.Misc.VarGlobal.G_RsvAQuota;
@@ -79,6 +81,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.L_AXQuota;
 import static kidzania.reservationgroup.Misc.VarGlobal.L_CXQuota;
 import static kidzania.reservationgroup.Misc.VarGlobal.L_TAdult;
 import static kidzania.reservationgroup.Misc.VarGlobal.L_TChild;
+import static kidzania.reservationgroup.Misc.VarGlobal.LunchBefore;
 import static kidzania.reservationgroup.Misc.VarGlobal.NINO;
 import static kidzania.reservationgroup.Misc.VarGlobal.NOTIF_FINISH;
 import static kidzania.reservationgroup.Misc.VarGlobal.PROMOTOR_CODE;
@@ -96,6 +99,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.STR_ID_NUM_ESC;
 import static kidzania.reservationgroup.Misc.VarGlobal.STR_ID_PAQ;
 import static kidzania.reservationgroup.Misc.VarGlobal.STR_ID_RESP_AGE;
 import static kidzania.reservationgroup.Misc.VarGlobal.STR_ID_RESP_ESC;
+import static kidzania.reservationgroup.Misc.VarGlobal.SouvernirBefore;
 import static kidzania.reservationgroup.Misc.VarGlobal.SumAmountAdult;
 import static kidzania.reservationgroup.Misc.VarGlobal.SumAmountChild;
 import static kidzania.reservationgroup.Misc.VarGlobal.SumAmountTodd;
@@ -119,6 +123,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.dbHelper;
 import static kidzania.reservationgroup.Misc.VarGlobal.isCombineAll;
 import static kidzania.reservationgroup.Misc.VarGlobal.isCombineLunch;
 import static kidzania.reservationgroup.Misc.VarGlobal.isCombineSouvenir;
+import static kidzania.reservationgroup.Misc.VarGlobal.isFromList;
 import static kidzania.reservationgroup.Misc.VarGlobal.isModifReservation;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_GET_DATA_SPECIAL_QUOTA;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_SEND_RESERVATION;
@@ -148,6 +153,9 @@ public class ModifReservation extends AppCompatActivity {
     GetPackageReserv getPackageReserv;
 
     String hargaAddTodd,hargaAddChild, hargaAddAdult;
+
+    String ToddBefore, ChildBefore, AdultBefore, Com5Before, Com7Before, TickBefore, PromBefore;
+    String Reason;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +192,7 @@ public class ModifReservation extends AppCompatActivity {
         super.onResume();
         getInformationUser();
         setTextFromSearch();
+        setBefore();
         registerReceiver(mMessageFinish, new IntentFilter(NOTIF_FINISH));
     }
 
@@ -201,6 +210,7 @@ public class ModifReservation extends AppCompatActivity {
     };
 
     private void initialization(){
+        Reason = "";
         ModGroupName = (EditText) findViewById(R.id.ModGroupName);
         ModResponsible = (EditText) findViewById(R.id.ModResponsible);
         ModPromotor = (EditText) findViewById(R.id.ModPromotor);
@@ -856,7 +866,7 @@ private boolean CheckingCBAddTick() {
         TOTAL_APAGAR = String.valueOf(intHarga + SUMPackage());
 
         if(Integer.valueOf(COMPLIMENT5)>0){
-            TOTAL_APAGAR = String.valueOf(Integer.valueOf(TOTAL_APAGAR)-(Integer.valueOf(COMPLIMENT5)*Integer.valueOf(PriceAdult)));
+            TOTAL_APAGAR = String.valueOf(Integer.valueOf(TOTAL_APAGAR)-(Integer.valueOf(COMPLIMENT5)*Integer.valueOf(PriceAdult.replace(".",""))));
         }
     }
 
@@ -1172,6 +1182,7 @@ private boolean CheckingCBAddTick() {
         APIParameters.add("PROMOTOR_CODE");
         APIParameters.add("IDPACK_ADD");
         APIParameters.add("ID_NUM_RESER");
+        APIParameters.add("REASON");
     }
 
     private void AssignValueParam(){
@@ -1200,9 +1211,11 @@ private boolean CheckingCBAddTick() {
         APIValueParams.add(PROMOTOR_CODE);
         APIValueParams.add(IDPACK_ADD);
         APIValueParams.add(ID_NUM_RESER);
+        APIValueParams.add(Reason);
     }
 
     private void saveReservation(){
+        CompareBeforeAfter();
         AssignParamReservation();
         AssignValueParam();
         MultiParamGetDataJSON dataReservation = new MultiParamGetDataJSON();
@@ -1249,4 +1262,76 @@ private boolean CheckingCBAddTick() {
         mAlertDialog.show();
     }
 
+    private void setBefore(){
+        if (isFromList) {
+            ToddBefore = BEBE;
+            ChildBefore = NINO;
+            AdultBefore = ADULTO;
+            Com5Before = COMPLIMENT5;
+            Com7Before = COMPLIMENT7;
+            TickBefore = STR_ID_PAQ;
+            PromBefore = STR_ID_RESP_ESC;
+            isFromList = false;
+        }
+    }
+
+
+
+    private void CompareBeforeAfter(){
+        Reason = "Modif. ";
+        String strTod = "",
+                strChild = "",
+                strAdult = "" ,
+                strCom5 = "",
+                strCom7 = "",
+                strProm = "",
+                strTick = "",
+                strLunch = "",
+                strSouv = "",
+                strBus = "";
+
+        if (!ToddBefore.equals(AmountTodd)){
+            strTod = " |T: "+ToddBefore+" -> "+AmountTodd;
+        }
+        if (!ChildBefore.equals(AmountChild)){
+            strChild = " |C: "+ChildBefore+" -> "+AmountChild;
+        }
+        if (!AdultBefore.equals(AmountAdult)){
+            strAdult = " |A: "+AdultBefore+" -> "+AmountAdult;
+        }
+        if (!Com5Before.equals(COMPLIMENT5)){
+            strCom5 = " |Cmp5: "+Com5Before+" -> "+COMPLIMENT5;
+        }
+        if (!Com7Before.equals(COMPLIMENT7)){
+            strCom7 = " |Cmp7: "+Com7Before+" -> "+COMPLIMENT7;
+        }
+        if (!TickBefore.equals(STR_ID_PAQ)){
+            strProm = " |Tick: "+TickBefore+" -> "+STR_ID_PAQ;
+        }
+        if (!PromBefore.equals(STR_ID_RESP_ESC)){
+            strProm = " |Prom: "+PromBefore+" -> "+STR_ID_RESP_ESC;
+        }
+        if (!LunchBefore.equals(GetDataPackBefore("RESERV_PLUNCH"))){
+            strLunch = " |L: "+LunchBefore+" -> "+GetDataPackBefore("RESERV_PLUNCH");
+        }
+        if (!SouvernirBefore.equals(GetDataPackBefore("RESERV_PSOUV"))){
+            strSouv = " |S: "+SouvernirBefore+" -> "+GetDataPackBefore("RESERV_PSOUV");
+        }
+        if (!BusBefore.equals(GetDataPackBefore("RESERV_PBUS"))){
+            strBus = " |B: "+BusBefore+" -> "+GetDataPackBefore("RESERV_PBUS");
+        }
+        Reason = Reason + strTod + strChild + strAdult + strCom5 + strCom7 + strProm + strTick + strLunch + strSouv + strBus;
+    }
+
+    private String GetDataPackBefore(String status){
+        String NamePackage = "";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        cursor = db.rawQuery("SELECT PNAME FROM TRANSPACKAGE WHERE ID_NUM_RESER = "+ID_NUM_RESER+" AND STATUS='"+status+"'",null);
+        cursor.moveToFirst();
+        if (cursor.getCount()>0) {
+            cursor.moveToPosition(0);
+            NamePackage = cursor.getString(cursor.getColumnIndex("PNAME"));
+        }
+        return NamePackage;
+    }
 }

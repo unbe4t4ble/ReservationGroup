@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/textViewField1"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:visibility="invisible" />
 
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/textViewField15"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:visibility="invisible" />
 
@@ -74,7 +74,17 @@
                 android:layout_below="@+id/textViewField15"
                 android:layout_toRightOf="@+id/imgLogo"
                 android:text="Fecha Alta"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/btnPosting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/check"/>
+
         </RelativeLayout>
 
         <View

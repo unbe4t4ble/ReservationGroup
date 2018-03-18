@@ -4,18 +4,19 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import kidzania.reservationgroup.R;
 
 import static kidzania.reservationgroup.Misc.VarGlobal.GET_DETAIL_DATA_GROUP;
+import static kidzania.reservationgroup.Misc.VarGlobal.GRPNAME;
+import static kidzania.reservationgroup.Misc.VarGlobal.IDUSR_OWN;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_NUM_ESC;
 import static kidzania.reservationgroup.Misc.VarGlobal.POSITION_DATA;
+import static kidzania.reservationgroup.Misc.VarGlobal.POSTING_GROUP;
 import static kidzania.reservationgroup.Misc.VarGlobal.TAKE_PHOTO_GROUP;
-
-/**
- * Created by mubarik on 06/11/2017.
- */
+import static kidzania.reservationgroup.Misc.VarGlobal.isAdmin;
 
 public class GroupViewDraftHolder extends RecyclerView.ViewHolder {
     public TextView textviewField1,textviewField2,textviewField3,textviewField4,textviewField5,textviewField6,textviewField7;
@@ -61,6 +62,24 @@ public class GroupViewDraftHolder extends RecyclerView.ViewHolder {
                 POSITION_DATA = getPosition();
                 Intent intent = new Intent(GET_DETAIL_DATA_GROUP);
                 v.getContext().sendBroadcast(intent);
+            }
+        });
+
+        ImageButton btnPosting = (ImageButton) itemView.findViewById(R.id.btnPosting);
+        if(!isAdmin){
+            btnPosting.setVisibility(View.GONE);
+        }
+
+        btnPosting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ID_NUM_ESC = txtID_NUM_ESC.getText().toString();
+                IDUSR_OWN = txtIDUSR_OWN.getText().toString();
+                GRPNAME = textviewField1.getText().toString();
+                POSITION_DATA = getPosition();
+                Intent intent = new Intent(POSTING_GROUP);
+                v.getContext().sendBroadcast(intent);
+                //Toast.makeText(v.getContext(), "test", Toast.LENGTH_SHORT).show();
             }
         });
     }

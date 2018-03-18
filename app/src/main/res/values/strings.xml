@@ -29,6 +29,7 @@
     <string name="form_search_Package">PACKAGE</string>
     <string name="form_add_package">ADD PACKAGE</string>
     <string name="form_group_personal">LIST PERSONAL</string>
+    <string name="form_history_resv">HISTORY</string>
 
     <string name="app_name">Reservation Group</string>
 
@@ -53,7 +54,7 @@
     <string name="btn_daily_report_main_menu">DAILY REPORT</string>
     <string name="btn_item_send_draft">Send To Draft</string>
     <string name="btn_find_group">Find</string>
-    <string name="btn_ok_message">Ok</string>
+    <string name="btn_ok_message">OK</string>
     <string name="btn_login_login">LOGIN</string>
     <string name="btn_try_again">Try Again</string>
     <string name="btn_add_group">Add</string>
@@ -77,11 +78,12 @@
     <string name="message_logout_app">Do you want to logout ?</string>
     <string name="message_send_to_draft1">Do you want to send</string>
     <string name="message_send_to_draft2">to draft ?</string>
+    <string name="message_send_to_posting">Do you want to post</string>
     <string name="message_invalid_group_name">Please define group name.</string>
     <string name="message_invalid_group_grade">Please define grade.</string>
     <string name="message_invalid_group_type">Please define group type.</string>
-    <string name="message_invalid_group_catagory">Please define group catagory.</string>
-    <string name="message_invalid_group_address">Please define group address.</string>
+    <string name="message_invalid_group_catagory">Please define group category.</string>
+    <string name="message_invalid_group_address">Please define address.</string>
     <string name="message_invalid_group_province">Please define province.</string>
     <string name="message_invalid_group_city">Please define city.</string>
     <string name="message_invalid_group_distrik">Please define district.</string>
@@ -120,11 +122,18 @@
     <string name="message_invalid_modif_ticket">Please define ticket package.</string>
     <string name="message_invalid_modif_add_ticket">Please define additional ticket package for additional person.</string>
     <string name="message_invalid_modif_adult">Adult ticket may not be empty.</string>
+    <string name="message_reason_cancel">Please define reason of cancelation.</string>
+    <string name="message_descrp_reason_cancel">Please give remark for the cancelation.</string>
+    <string name="message_confirm_cancel">Do you really want to cancel selected booking quota?</string>
+    <string name="message_warning_entered">Can not change reservation date. The group has been entered the park.</string>
+    <string name="message_warning_access1">Can not change reservation date. The bracelets have been pre-registered.</string>
+    <string name="message_warning_access2">Please ask Airport department to removed them.</string>
+    <string name="message_invalid_pic_name">Please define PIC name.</string>
 
     <string name="str_group_name">Group Name*</string>
     <string name="str_group_grade">Grade*</string>
     <string name="str_group_type">Group Type*</string>
-    <string name="str_group_catagory">Catagory</string>
+    <string name="str_group_catagory">Category</string>
     <string name="str_group_address">Address*</string>
     <string name="str_group_district_area">District Area*</string>
     <string name="str_group_district">District*</string>
@@ -226,6 +235,12 @@
     <string name="str_add_package_total">Total</string>
     <string name="str_add_package_items">Items</string>
     <string name="str_add_package_list">List Package</string>
+
+    <string name="str_reason_cancel">Reason</string>
+    <string name="str_reason_deskrip">Description</string>
+
+    <string name="str_name_pid">PIC Name</string>
+    <string name="str_id_card">ID Card</string>
 
     <string name="str_null">0</string>
 

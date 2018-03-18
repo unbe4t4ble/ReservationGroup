@@ -87,6 +87,14 @@
                 android:layout_toRightOf="@+id/imgLogo"
                 android:layout_below="@+id/textViewField1"/>
 
+            <ImageButton
+                android:id="@+id/btnHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/history_resv"/>
 
         </RelativeLayout>
 

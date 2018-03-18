@@ -24,7 +24,7 @@
                 android:layout_height="45dp"
                 android:src="@drawable/logokz"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp" />
 
             <TextView
                 android:id="@+id/textViewField1"
@@ -86,6 +86,15 @@
                 android:textStyle="bold"
                 android:layout_toRightOf="@+id/imgLogo"
                 android:layout_below="@+id/textViewField1"/>
+
+            <ImageButton
+                android:id="@+id/btnHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/history_resv"/>
 
 
         </RelativeLayout>

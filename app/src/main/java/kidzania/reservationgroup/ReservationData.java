@@ -12,11 +12,9 @@ import static kidzania.reservationgroup.Misc.VarGlobal.APIParameters;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIValueParams;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_GET_DATA_RESERVATION;
 import static kidzania.reservationgroup.Misc.VarGlobal.SENDER_CLASS;
+import static kidzania.reservationgroup.Misc.VarGlobal.isAdmin;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_GET_DATA_RESERVATION;
-
-/**
- * Created by mubarik on 20/12/2017.
- */
+import static kidzania.reservationgroup.Misc.VarUrl.URL_GET_DATA_RESERVATION_ADMIN;
 
 public class ReservationData extends ParentBookAndResvData {
 
@@ -53,7 +51,11 @@ public class ReservationData extends ParentBookAndResvData {
         HEADER = HEAD_GET_DATA_RESERVATION;
         if(hasConnection(ReservationData.this)) {
             MultiParamGetDataJSON getDataReservation = new MultiParamGetDataJSON();
-            getDataReservation.init(APIValueParams, APIParameters, URL_GET_DATA_RESERVATION, ReservationData.this, json_Reservation, false);
+            if(isAdmin){
+                getDataReservation.init(APIValueParams, APIParameters, URL_GET_DATA_RESERVATION_ADMIN, ReservationData.this, json_Reservation, false);
+            }else {
+                getDataReservation.init(APIValueParams, APIParameters, URL_GET_DATA_RESERVATION, ReservationData.this, json_Reservation, false);
+            }
         }else{
             OpenLostConnection(this);
         }

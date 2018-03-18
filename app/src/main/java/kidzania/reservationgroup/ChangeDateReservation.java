@@ -47,6 +47,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.FECHA_VISITA;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_GET_SPECIAL_QUOTA;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_STATUS;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_NUM_RESER;
+import static kidzania.reservationgroup.Misc.VarGlobal.ID_USER;
 import static kidzania.reservationgroup.Misc.VarGlobal.L_AXQuota;
 import static kidzania.reservationgroup.Misc.VarGlobal.L_CXQuota;
 import static kidzania.reservationgroup.Misc.VarGlobal.NINO;
@@ -65,6 +66,8 @@ public class ChangeDateReservation extends AppCompatActivity {
     int L_RsvAdult;
     boolean CheckingSpecialQuotaChild = true;
     boolean CheckingSpecialQuotaAdult = true;
+
+    String DateBefore, DateAfter, ShiftBefore, ShiftAfter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,24 @@ public class ChangeDateReservation extends AppCompatActivity {
         TanggalReservasi.setText(getStrDateNow());
     }
 
+    private void setBefore(){
+        DateBefore = FECHA_VISITA;
+        if(TURNO == 0){
+            ShiftBefore = "Morning";
+        }else{
+            ShiftBefore = "Afternoon";
+        }
+    }
+
+    private void setAfter(){
+        DateAfter = FECHA_VISITA;
+        if(TURNO == 0){
+            ShiftAfter = "Morning";
+        }else{
+            ShiftAfter = "Afternoon";
+        }
+    }
+
 
     private void initialization(){
         TanggalReservasi = (EditText) findViewById(R.id.TanggalReservasi);
@@ -125,6 +146,7 @@ public class ChangeDateReservation extends AppCompatActivity {
                 }
             }
         });
+        setBefore();
     }
 
     private void saveChangeDate(){
@@ -270,6 +292,7 @@ public class ChangeDateReservation extends AppCompatActivity {
         FECHA_VISITA = DateReservDD; //Tanggal kunjungan
         TURNO = Shift; // shift/sesi
         if (isValidDate() && CheckingSpecialQuotaChild && CheckingSpecialQuotaAdult) {
+            setAfter();
             editDataGroup();
         }
     }
@@ -280,9 +303,13 @@ public class ChangeDateReservation extends AppCompatActivity {
         APIParameters.add("FECHA_VISITA");
         APIParameters.add("TURNO");
         APIParameters.add("ID_NUM_RESER");
+        APIParameters.add("IDUSER");
+        APIParameters.add("REASON");
         APIValueParams.add(FECHA_VISITA);
         APIValueParams.add(String.valueOf(TURNO));
         APIValueParams.add(ID_NUM_RESER);
+        APIValueParams.add(ID_USER);
+        APIValueParams.add("CHG date/shift from "+DateBefore+" "+ShiftBefore+" to "+DateAfter+" "+ShiftAfter);
         MultiParamGetDataJSON SaveChangeDate = new MultiParamGetDataJSON();
         SaveChangeDate.init(APIValueParams, APIParameters, URL_EDIT_DATE_BOOKING, ChangeDateReservation.this, json_change_date, true);
     }

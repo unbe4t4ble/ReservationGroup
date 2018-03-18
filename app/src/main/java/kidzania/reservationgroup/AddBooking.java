@@ -218,7 +218,7 @@ public class AddBooking extends AppCompatActivity {
             return true;
         }
     }
-
+/*
     private boolean CheckingCBGroup() {
         if (TextUtils.isEmpty(edtGroup.getText().toString())) {
             Toast.makeText(this, getString(R.string.message_invalid_group_name), Toast.LENGTH_LONG).show();
@@ -227,7 +227,7 @@ public class AddBooking extends AppCompatActivity {
             return true;
         }
     }
-
+*/
     private boolean CheckingCBTicket() {
         if (TextUtils.isEmpty(edtTickPack.getText().toString())) {
             Toast.makeText(this, getString(R.string.message_warning_booking_ticket), Toast.LENGTH_LONG).show();
@@ -266,7 +266,7 @@ public class AddBooking extends AppCompatActivity {
 
     private boolean CheckingText() {
 
-        return !((!CheckingCBGroup()) || (!CheckingCBSupport()) || (!CheckingCBPromotor()) || (!CheckingCBTicket()) || (!CheckingTextHarga()));
+        return !((!CheckingCBSupport()) || (!CheckingCBPromotor()) || (!CheckingCBTicket()) || (!CheckingTextHarga()));
     }
 
     private boolean ValidateQuotaChild() {

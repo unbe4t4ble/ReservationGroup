@@ -74,7 +74,15 @@
                 android:layout_below="@+id/textViewField15"
                 android:layout_toRightOf="@+id/imgLogo"
                 android:text="Fecha Alta"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
+
+            <ImageButton
+                android:id="@+id/btnPosting"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/check"/>
         </RelativeLayout>
 
         <View

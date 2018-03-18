@@ -47,7 +47,7 @@ def renameAPK(variant, buildType) {
     variant.outputs.each { output ->
         def versionMajor = 2
         def versionRelease = 0
-        def versionBuild = 4
+        def versionBuild = 5
         def strVersion = versionMajor + "_" + versionRelease + "_" + versionBuild
         def file = output.packageApplication.outputFile
         def fileName = applicationName + "_V" + strVersion + "_" + buildType + ".apk"

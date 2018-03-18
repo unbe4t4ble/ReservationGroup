@@ -132,7 +132,7 @@ public class GroupPersonal extends AppCompatActivity {
                 refreshData();
                 return true;
             case R.id.btn_add_group:
-                //showDialogGType();
+                AddNewPIC();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -296,5 +296,9 @@ public class GroupPersonal extends AppCompatActivity {
     private void refreshData(){
         setDefaultValue();
         getPersonal();
+    }
+
+    private void AddNewPIC(){
+        startActivity(new Intent(GroupPersonal.this, AddPICPersonal.class));
     }
 }

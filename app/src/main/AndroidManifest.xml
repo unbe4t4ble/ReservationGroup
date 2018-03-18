@@ -167,6 +167,13 @@
             android:name=".GroupPersonal"
             android:label="@string/form_group_personal"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".HistoryReservation"
+            android:label="@string/form_history_resv"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddPICPersonal"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

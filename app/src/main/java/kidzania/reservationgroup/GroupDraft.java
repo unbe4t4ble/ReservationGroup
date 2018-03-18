@@ -6,12 +6,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +26,7 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.OpenLostConnection;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
 import static kidzania.reservationgroup.Misc.FuncGlobal.hasConnection;
+import static kidzania.reservationgroup.Misc.FuncGlobal.setDefaultGroup;
 import static kidzania.reservationgroup.Misc.VarGlobal.ADDR;
 import static kidzania.reservationgroup.Misc.VarGlobal.AMNT_A;
 import static kidzania.reservationgroup.Misc.VarGlobal.AMNT_C;
@@ -45,6 +49,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.GRPNAME;
 import static kidzania.reservationgroup.Misc.VarGlobal.GTYPE;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_GET_DETAIL_GROUP;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_GROUP_DRAFT;
+import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_STATUS;
 import static kidzania.reservationgroup.Misc.VarGlobal.IDUSR_OWN;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_NUM_ESC;
 import static kidzania.reservationgroup.Misc.VarGlobal.IS_EDIT;
@@ -52,6 +57,8 @@ import static kidzania.reservationgroup.Misc.VarGlobal.NO_HP;
 import static kidzania.reservationgroup.Misc.VarGlobal.PHONE;
 import static kidzania.reservationgroup.Misc.VarGlobal.PIC;
 import static kidzania.reservationgroup.Misc.VarGlobal.PLC_TRIP;
+import static kidzania.reservationgroup.Misc.VarGlobal.POSITION_DATA;
+import static kidzania.reservationgroup.Misc.VarGlobal.POSTING_GROUP;
 import static kidzania.reservationgroup.Misc.VarGlobal.PRINCIPAL;
 import static kidzania.reservationgroup.Misc.VarGlobal.PRINC_HP;
 import static kidzania.reservationgroup.Misc.VarGlobal.PROVINCE;
@@ -59,12 +66,11 @@ import static kidzania.reservationgroup.Misc.VarGlobal.SENDER_CLASS;
 import static kidzania.reservationgroup.Misc.VarGlobal.STATUS_GROUP;
 import static kidzania.reservationgroup.Misc.VarGlobal.TAKE_PHOTO_GROUP;
 import static kidzania.reservationgroup.Misc.VarGlobal.ZIPCODE;
+import static kidzania.reservationgroup.Misc.VarGlobal.isAdmin;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_DETAIL_DATA_GROUP;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_GROUP_DRAFT;
-
-/**
- * Created by mubarik on 10/11/2017.
- */
+import static kidzania.reservationgroup.Misc.VarUrl.URL_GROUP_DRAFT_ADMIN;
+import static kidzania.reservationgroup.Misc.VarUrl.URL_SEND_TO_DATA;
 
 public class GroupDraft extends ParentListGroup {
 
@@ -73,6 +79,7 @@ public class GroupDraft extends ParentListGroup {
         super.onResume();
         registerReceiver(mMessageGroupData, new IntentFilter(GET_DETAIL_DATA_GROUP));
         registerReceiver(mMessagePhotoImage, new IntentFilter(TAKE_PHOTO_GROUP));
+        registerReceiver(mMessageGroupPosting, new IntentFilter(POSTING_GROUP));
         refreshData();
     }
 
@@ -82,6 +89,7 @@ public class GroupDraft extends ParentListGroup {
         super.onPause();
         unregisterReceiver(mMessageGroupData);
         unregisterReceiver(mMessagePhotoImage);
+        unregisterReceiver(mMessageGroupPosting);
     }
 
     //This is the handler that will manager to process the broadcast intent
@@ -98,6 +106,13 @@ public class GroupDraft extends ParentListGroup {
         @Override
         public void onReceive(Context context, Intent intent) {
             OpenPhoto();
+        }
+    };
+
+    private BroadcastReceiver mMessageGroupPosting = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            sendGroupPosting();
         }
     };
 
@@ -147,8 +162,13 @@ public class GroupDraft extends ParentListGroup {
         super.getGroup();
         HEADER_GROUP = HEAD_GROUP_DRAFT;
         if(hasConnection(GroupDraft.this)) {
-            MultiParamGetDataJSON getDataAvail = new MultiParamGetDataJSON();
-            getDataAvail.init(APIValueParams, APIParameters, URL_GROUP_DRAFT, GroupDraft.this, json_group, false);
+            if (!isAdmin) {
+                MultiParamGetDataJSON getDataDraft = new MultiParamGetDataJSON();
+                getDataDraft.init(APIValueParams, APIParameters, URL_GROUP_DRAFT, GroupDraft.this, json_group, false);
+            }else{
+                MultiParamGetDataJSON getDataDraft = new MultiParamGetDataJSON();
+                getDataDraft.init(APIValueParams, APIParameters, URL_GROUP_DRAFT_ADMIN, GroupDraft.this, json_group, false);
+            }
         }else{
             OpenLostConnection(this);
         }
@@ -208,6 +228,7 @@ public class GroupDraft extends ParentListGroup {
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        setDefaultGroup();
                         if (GTYPE.equals("Personal")){
                             OpenListGroupPersonal();
                         }else {
@@ -294,6 +315,77 @@ public class GroupDraft extends ParentListGroup {
     private void OpenListGroupPersonal(){
         startActivity(new Intent(GroupDraft.this, GroupPersonal.class));
     }
+
+    private void AssignParamPosting(){
+        clearAPIParams();
+        APIParameters.add("id_num_esc");
+    }
+
+    private void AssignValueParamPosting(){
+        clearAPIValueParam();
+        APIValueParams.add(ID_NUM_ESC);
+    }
+
+    public void sendGroupPosting(){
+        DialogPosting();
+    }
+
+    private void DialogPosting(){
+        AlertDialog.Builder sayWindows = new AlertDialog.Builder(GroupDraft.this);
+        View mView = LayoutInflater.from(GroupDraft.this).inflate(R.layout.pop_two_button, null);
+        final TextView txtJudul = (TextView) mView.findViewById(R.id.txtJudul);
+        final TextView txtMessage = (TextView) mView.findViewById(R.id.txtMessage);
+        final Button btnYes = (Button) mView.findViewById(R.id.btnYes);
+        final Button btnNo = (Button) mView.findViewById(R.id.btnNo);
+        txtJudul.setText(getString(R.string.message_dialog_confirmation));
+        txtMessage.setText(getString(R.string.message_send_to_posting)+" '"+GRPNAME+"' ?");
+        sayWindows.setView(mView);
+        final AlertDialog mAlertDialog = sayWindows.create();
+
+        btnYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAlertDialog.dismiss();
+                excutePosting();
+            }
+        });
+        btnNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAlertDialog.dismiss();
+            }
+        });
+        mAlertDialog.show();
+    }
+
+    private void excutePosting(){
+        AssignParamPosting();
+        AssignValueParamPosting();
+        MultiParamGetDataJSON posting = new MultiParamGetDataJSON();
+        posting.init(APIValueParams, APIParameters, URL_SEND_TO_DATA, GroupDraft.this, json_send_posting, false);
+    }
+
+    MultiParamGetDataJSON.JSONObjectResult json_send_posting = new MultiParamGetDataJSON.JSONObjectResult() {
+        @Override
+        public void gotJSONObject(JSONObject jsonObject) {
+            try {
+                JSONArray jsonArray = jsonObject.getJSONArray(HEAD_STATUS);
+                String ID = null;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject objData = jsonArray.getJSONObject(i);
+                    ID = objData.getString("STATUS");
+                }
+                if (!TextUtils.isEmpty(ID)) {
+                    data.remove(POSITION_DATA);
+                    listGroupAdapter.notifyItemRemoved(POSITION_DATA);
+                    listGroupAdapter.notifyItemRangeChanged(POSITION_DATA, data.size());
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
 
 

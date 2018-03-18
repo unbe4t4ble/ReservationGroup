@@ -15,18 +15,17 @@ import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIParams;
 import static kidzania.reservationgroup.Misc.FuncGlobal.clearAPIValueParam;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIParameters;
 import static kidzania.reservationgroup.Misc.VarGlobal.APIValueParams;
+import static kidzania.reservationgroup.Misc.VarGlobal.BusBefore;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_GET_DATA_PACKAGE_RESERV;
 import static kidzania.reservationgroup.Misc.VarGlobal.HEAD_STATUS;
 import static kidzania.reservationgroup.Misc.VarGlobal.ID_NUM_RESER;
+import static kidzania.reservationgroup.Misc.VarGlobal.LunchBefore;
 import static kidzania.reservationgroup.Misc.VarGlobal.NOTIF_FINISH;
+import static kidzania.reservationgroup.Misc.VarGlobal.SouvernirBefore;
 import static kidzania.reservationgroup.Misc.VarGlobal.cursor;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_DELETE_PACKAGE_RESV;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_GET_DATA_PACKAGE_RESERV;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_SEND_PACKAGE_RESV;
-
-/**
- * Created by mubarik on 15/01/2018.
- */
 
 public class GetPackageReserv {
 
@@ -42,21 +41,21 @@ public class GetPackageReserv {
             "RESERV_POTH"
     };
 
-    String[] ArrayDELETE_TAGPACK = new String[]{
+    private String[] ArrayDELETE_TAGPACK = new String[]{
             "GRP_DelLunch",
             "GRP_DelBus",
             "GRP_DelSouv",
             "GRP_DelOther"
     };
 
-    String[] ArrayINSERT_TAGPACK = new String[]{
+    private String[] ArrayINSERT_TAGPACK = new String[]{
             "GRP_InsLunch",
             "GRP_InsBus",
             "GRP_InsSouv",
             "GRP_InsOther"
     };
 
-    String[] ArraySELECT_TAGPACK = new String[]{
+    private String[] ArraySELECT_TAGPACK = new String[]{
             "GRP_GetLunch",
             "GRP_GetBus",
             "GRP_GetSouv",
@@ -180,6 +179,7 @@ public class GetPackageReserv {
                     );
                 }
                 insertPackageOther();
+                getPackBeforeModif();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -218,9 +218,9 @@ public class GetPackageReserv {
     private void AssignDeleteParamAndValue(){
         clearAPIParams();
         clearAPIValueParam();
-        for(int i=0; i < ArrayDELETE_TAGPACK.length;i++){
+        for (String aArrayDELETE_TAGPACK : ArrayDELETE_TAGPACK) {
             APIParameters.add("tag_pack_delete[]");
-            APIValueParams.add(ArrayDELETE_TAGPACK[i]);
+            APIValueParams.add(aArrayDELETE_TAGPACK);
         }
         APIParameters.add("id_num_reser");
         APIValueParams.add(ID_NUM_RESER);
@@ -232,7 +232,7 @@ public class GetPackageReserv {
         deleteData.init(APIValueParams, APIParameters, URL_DELETE_PACKAGE_RESV, context, json_delete, true);
     }
 
-    MultiParamGetDataJSON.JSONObjectResult json_delete = new MultiParamGetDataJSON.JSONObjectResult() {
+    private MultiParamGetDataJSON.JSONObjectResult json_delete = new MultiParamGetDataJSON.JSONObjectResult() {
         @Override
         public void gotJSONObject(JSONObject jsonObject){
             try {
@@ -375,6 +375,24 @@ public class GetPackageReserv {
             }
         }
     };
+
+    private void getPackBeforeModif(){
+        LunchBefore = GetDataPackBefore("RESERV_PLUNCH");
+        SouvernirBefore = GetDataPackBefore("RESERV_PSOUV");
+        BusBefore = GetDataPackBefore("RESERV_PBUS");
+    }
+
+    private String GetDataPackBefore(String status){
+        String NamePackage = "";
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        cursor = db.rawQuery("SELECT PNAME FROM TRANSPACKAGE WHERE ID_NUM_RESER = "+ID_NUM_RESER+" AND STATUS='"+status+"'",null);
+        cursor.moveToFirst();
+        if (cursor.getCount()>0) {
+            cursor.moveToPosition(0);
+            NamePackage = cursor.getString(cursor.getColumnIndex("PNAME"));
+        }
+        return NamePackage;
+    }
 
 
 

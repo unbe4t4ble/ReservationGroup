@@ -77,7 +77,7 @@ public class ParentBookAndResvData extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(mMessageNoData);
+        registerReceiver(mMessageNoData, new IntentFilter(RESV_EMPTY_DATA));
     }
 
     //This is the handler that will manager to process the broadcast intent

@@ -33,6 +33,7 @@ import static kidzania.reservationgroup.Misc.VarGlobal.ID_USER;
 import static kidzania.reservationgroup.Misc.VarGlobal.U_LOGIN;
 import static kidzania.reservationgroup.Misc.VarGlobal.U_PASS;
 import static kidzania.reservationgroup.Misc.VarGlobal.dbHelper;
+import static kidzania.reservationgroup.Misc.VarGlobal.isAdmin;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_USER_LOGIN;
 
 public class Login extends AppCompatActivity {
@@ -112,6 +113,7 @@ public class Login extends AppCompatActivity {
                 //Toast.makeText(Login.this, idLogin+"sss", Toast.LENGTH_SHORT).show();
                 PermissionAccess = !ID_USER.isEmpty();
                 if (PermissionAccess){
+                    isAdmin = (U_LOGIN.equals("indah") || U_LOGIN.equals("median"));
                     SaveIdentificationUser(ID_USER, U_LOGIN, U_PASS, GRPRSVMOD, FLAG);
                     OpenMainMenu();
                 }else{

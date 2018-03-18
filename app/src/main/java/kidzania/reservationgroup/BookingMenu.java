@@ -294,7 +294,7 @@ public class BookingMenu extends AppCompatActivity {
         L_AXQuota = 400;
 
         G_MPopChild = 1200;
-        G_MPSChild = 1200;
+        G_MPSChild = 1000;
         G_MAdult = 400;
     }
 

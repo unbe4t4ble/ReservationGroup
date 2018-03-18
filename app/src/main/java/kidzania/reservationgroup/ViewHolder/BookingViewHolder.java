@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import kidzania.reservationgroup.API.MultiParamGetDataJSON;
+import kidzania.reservationgroup.ChangeDateReservation;
 import kidzania.reservationgroup.ModifReservation;
 import kidzania.reservationgroup.R;
 
@@ -102,21 +103,20 @@ import static kidzania.reservationgroup.Misc.VarGlobal.SVR_ADICIONAL;
 import static kidzania.reservationgroup.Misc.VarGlobal.TAX;
 import static kidzania.reservationgroup.Misc.VarGlobal.TOTAL_APAGAR;
 import static kidzania.reservationgroup.Misc.VarGlobal.USUARIO_ALTA;
+import static kidzania.reservationgroup.Misc.VarGlobal.isAdmin;
 import static kidzania.reservationgroup.Misc.VarGlobal.isModifReservation;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_EDIT_CANCEL_BOOKING;
 import static kidzania.reservationgroup.Misc.VarUrl.URL_GET_DATA_RESERVATION_ID;
-
-/**
- * Created by mubarik on 06/11/2017.
- */
 
 public class BookingViewHolder extends RecyclerView.ViewHolder {
 
     public TextView textID_BOOKING, textID_Group, textID_PROMOTOR, textID_SUPPORTER, textID_RESP_ESC, textTanggalBuat;
     public TextView textviewField1,textviewField2,textviewField3,textviewField4,textviewField5,textviewField6,textviewField7;
     public TextView textviewField8,textviewField9,textviewField10,textviewField11,textviewField12,textviewField13,textviewField14;
-    public TextView textviewField15,textviewField16;
-    Context context;
+    private TextView textviewField15,textviewField16;
+    private Context context;
+
+    String strReason, strDeskrip;
 
     public BookingViewHolder(final View itemView) {
         super(itemView);
@@ -146,35 +146,33 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
         textviewField14 = (TextView) itemView.findViewById(R.id.textViewField14);
         textviewField15 = (TextView) itemView.findViewById(R.id.textViewField15);
         textviewField16 = (TextView) itemView.findViewById(R.id.textViewField16);
-        /*
         ImageView btnChangeDate = (ImageView) itemView.findViewById(R.id.btnChangeDate);
-        btnChangeDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ID_NUM_RESER = textID_BOOKING.getText().toString();
-                STATUS_RESERV = textviewField3.getText().toString();
-                NINO = textviewField7.getText().toString();
-                ADULTO = textviewField8.getText().toString();
-                if (STATUS_RESERV.equals("CANCEL")) {
-                    SingleDialodWithOutVoid(
-                            v.getContext(),
-                            v.getContext().getString(R.string.message_dialog_warning),
-                            v.getContext().getString(R.string.message_warning_change_date));
-                }else{
-                    v.getContext().startActivity(new Intent(v.getContext(), ChangeDateReservation.class));
-                }
-            }
-        });
         ImageView btnCancelBooking = (ImageView) itemView.findViewById(R.id.btnCancelBooking);
-        btnCancelBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ID_NUM_RESER = textID_BOOKING.getText().toString();
-                DialogCancelBooking();
-            }
-        });
-        */
-
+        if (isAdmin) {
+            btnChangeDate.setVisibility(View.VISIBLE);
+            btnCancelBooking.setVisibility(View.VISIBLE);
+            btnChangeDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setVariable();
+                    if (STATUS_RESERV.equals("CANCEL")) {
+                        SingleDialodWithOutVoid(
+                                v.getContext(),
+                                v.getContext().getString(R.string.message_dialog_warning),
+                                v.getContext().getString(R.string.message_warning_change_date));
+                    } else {
+                        v.getContext().startActivity(new Intent(v.getContext(), ChangeDateReservation.class));
+                    }
+                }
+            });
+            btnCancelBooking.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setVariable();
+                    DialogCancelBooking();
+                }
+            });
+        }
         ImageView btnModifBooking = (ImageView) itemView.findViewById(R.id.btnModifBooking);
         btnModifBooking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,6 +182,13 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
                 //itemView.getContext().startActivity(new Intent(itemView.getContext(), ModifReservation.class));
             }
         });
+    }
+
+    private void setVariable(){
+        ID_NUM_RESER = textID_BOOKING.getText().toString();
+        STATUS_RESERV = textviewField3.getText().toString();
+        NINO = textviewField7.getText().toString();
+        ADULTO = textviewField8.getText().toString();
     }
 
     private void DialogCancelBooking(){
@@ -247,7 +252,6 @@ public class BookingViewHolder extends RecyclerView.ViewHolder {
             }
         }
     };
-
 
     private void getDataReservation(){
         AssignParam();
