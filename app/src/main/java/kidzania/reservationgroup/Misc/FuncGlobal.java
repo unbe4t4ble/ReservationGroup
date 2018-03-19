@@ -354,7 +354,7 @@ public class FuncGlobal {
             U_PASS = cursor.getString(cursor.getColumnIndex("U_PASS"));
             GRPRSVMOD = cursor.getString(cursor.getColumnIndex("GRPRSVMOD"));
             FLAG = cursor.getString(cursor.getColumnIndex("FLAG"));
-            isAdmin = (U_LOGIN.equals("indah") || U_LOGIN.equals("median") || U_LOGIN.equals("mubarik"));
+            isAdmin = (U_LOGIN.equals("indahnur") || U_LOGIN.equals("median") || U_LOGIN.equals("mubarik"));
         }
     }
 

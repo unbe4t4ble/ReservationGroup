@@ -1,13 +1,9 @@
 package kidzania.reservationgroup.Misc;
 
-/**
- * Created by mubarik on 06/11/2017.
- */
-
 public class VarUrl {
 
     //Token
-    public static final String TOKEN = "dabb61a4ed36f8c4e4bf02715543bd49c07790369ddb617ecf36c04f8a133714";
+    public static final String TOKEN = "Skjhu8920kjaskjr3KDj2";
     /*
     //Ip dan sub folder local
     private static final String IP = "http://192.168.0.4/";
@@ -17,7 +13,7 @@ public class VarUrl {
     */
 
     //Ip dan sub folder public
-    private static final String IP = "xxxxxxxxx";
+    private static final String IP = "http://xxxxxxxxxxxxx/";
     private static final String PATH_FILE = "aReservationGroup/";
     private static final String PATH_FILE_IMAGE = "android/php/image/";
     private static final String IP_PATH_FILE = IP+PATH_FILE;
